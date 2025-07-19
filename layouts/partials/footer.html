@@ -37,8 +37,8 @@
         <a href="mailto:{{ $.Site.Params.email }}"><i class="far fa-envelope-open mr-3" aria-hidden="true"></i></a>
     {{ end }}
 
-    {{ if and $.Site.Params.include_rss $.RSSLink }}
-        <a href="{{ $.RSSLink }}"><i class="fas fa-rss mr-3" aria-hidden="true"></i></a>
+    {{ if and $.Site.Params.include_rss ($.OutputFormats.Get "RSS") }}
+        <a href="{{ ($.OutputFormats.Get "RSS").Permalink }}"><i class="fas fa-rss mr-3" aria-hidden="true"></i></a>
     {{ end }}
 
     {{ if and $.Site.Params.i18n_flags $.IsTranslated }}
@@ -53,7 +53,7 @@
   <!--Copyright-->
   <div class="copyright py-4">
     <!-- Copyright © 2018 Orianna -->
-    <span>  2016 - {{ now.Year }} &copy; | Theme <a href='https://github.com/orianna-zzo/AllinOne' target="_blank">AllinOne</a> by <a href='https://github.com/orianna-zzo' target="_blank">Orianna</a>  </span>
+    <span>  2016 - {{ now.Year }} &copy; | Powered by Hugo and <a href='https://github.com/axfinn/AllinOne' target="_blank">AllinOne Theme</a>.  </span>
   </div>
   <!--/.Copyright-->
 
