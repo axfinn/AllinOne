@@ -1178,11 +1178,12 @@ toc-nav  scrollspy
 .form-inline .dropdown-menu {
     position: absolute;
     top: 100%; /* 定位在输入框正下方 */
-    left: 0;
+    left: 50%; /* 居中 */
+    transform: translateX(-50%); /* 居中 */
     z-index: 1000; /* 确保在其他内容之上 */
     /* display: none; /* 由 JS 控制显示/隐藏 */
     float: none; /* 覆盖 Bootstrap 的浮动 */
-    min-width: 100%; /* 宽度与输入框一致 */
+    width: 300px; /* 调整宽度 */
     padding: 0; /* 移除默认内边距 */
     margin: 0; /* 移除默认外边距 */
     border-top-left-radius: 0; /* 移除顶部圆角 */
@@ -1219,51 +1220,13 @@ toc-nav  scrollspy
     height: 100px;
     cursor: grab;
     z-index: 9999;
-    transition: left 0.5s ease-out, top 0.5s ease-out; /* Smooth movement */
+    transition: left 0.5s ease-out, top 0.5s ease-out, opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
 }
 
-#blog-pet svg {
-    width: 100%;
-    height: 100%;
-}
-
-#pet-speech-bubble {
-    position: absolute;
-    bottom: 100%; /* Above the pet */
-    left: 50%;
-    transform: translateX(-50%) scale(0.8);
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 8px 12px;
-    white-space: nowrap;
+#blog-pet.hidden {
     opacity: 0;
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    pointer-events: none; /* Allow clicks to pass through */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-#pet-speech-bubble::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 100%;
-    transform: translateX(-50%);
-    border-width: 8px;
-    border-style: solid;
-    border-color: #ccc transparent transparent transparent;
-}
-
-#pet-speech-bubble::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 100%;
-    transform: translateX(-50%);
-    border-width: 7px;
-    border-style: solid;
-    border-color: #fff transparent transparent transparent;
-    margin-top: 1px; /* To cover the border triangle */
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
 }
 
 #pet-toggle-button {
@@ -1281,7 +1244,7 @@ toc-nav  scrollspy
     font-size: 12px;
     cursor: pointer;
     z-index: 10;
-    opacity: 0; /* Hidden by default */
+    opacity: 1; /* Always visible for debugging */
     transition: opacity 0.3s ease-in-out;
 }
 
@@ -1289,6 +1252,36 @@ toc-nav  scrollspy
     opacity: 1; /* Show on hover */
 }
 
-#blog-pet.hidden {
-    display: none;
+#blog-pet {
+    transition: left 0.5s ease-out, top 0.5s ease-out, opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+#pet-speech-bubble {
+    position: absolute;
+    background-color: #333;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: scale(0.8);
+    transform-origin: bottom center;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    pointer-events: none; /* Allow clicks to pass through */
+    bottom: 100%; /* Position above the pet */
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+    margin-bottom: 10px; /* Space between pet and bubble */
+    z-index: 9998;
+}
+
+#pet-speech-bubble::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: #333;
 }
