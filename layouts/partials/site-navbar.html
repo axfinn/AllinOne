@@ -34,8 +34,21 @@
           {{ end }}
         </ul>
 
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item">
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search-query">
+              <div class="dropdown-wrapper">
+                <ul id="search-results" class="dropdown-menu"></ul>
+              </div>
+            </form>
+          </li>
+        </ul>
+
       </div>
 
     </div>
   </nav>
   <!-- Navbar -->
+  <script src="{{ "js/search.js" | absURL }}"></script>
