@@ -4,6 +4,15 @@
 {{ $files := readDir $path  }}
 {{ $files := where $files  "Name" "ne" ".DS_Store" }}
 
+<!-- Set dynamic backgrounds array -->
+<script>
+  // Use external background images
+  window.dynamicBackgrounds = [
+    'https://picsum.photos/1920/1080?random=1',
+    'https://picsum.photos/1920/1080?random=2',
+    'https://picsum.photos/1920/1080?random=3'
+  ];
+</script>
 
 <!-- Carousel Wrapper -->
 <div id="site-header" class="carousel slide carousel-fade" data-ride="carousel" >  <!--data-pause="true" data-interval="300000"-->
@@ -68,6 +77,42 @@
   
   </div>
   <!-- /.Slides -->
+  
+  <!-- Dynamic Background Control Panel -->
+  <div class="dynamic-bg-control-panel">
+    <div class="dynamic-bg-control-toggle" id="dynamicBgControlToggle">
+      <i class="fas fa-cog"></i>
+    </div>
+    <div class="dynamic-bg-control-content collapsed" id="dynamicBgControlContent">
+      <div class="dynamic-bg-control-header">
+        <h3 class="dynamic-bg-control-title">背景控制</h3>
+        <button class="dynamic-bg-control-close" id="dynamicBgControlClose">&times;</button>
+      </div>
+      <div class="dynamic-bg-control-group">
+        <label class="dynamic-bg-control-label">轮换间隔 (秒)</label>
+        <input type="number" class="dynamic-bg-control-input" id="dynamicBgInterval" min="1" max="60" value="10">
+      </div>
+      <div class="dynamic-bg-control-group">
+        <label class="dynamic-bg-control-label">过渡时间 (毫秒)</label>
+        <input type="number" class="dynamic-bg-control-input" id="dynamicBgTransition" min="100" max="5000" value="1000">
+      </div>
+      <div class="dynamic-bg-control-checkbox">
+        <input type="checkbox" id="dynamicBgAutoSwitch" checked>
+        <label for="dynamicBgAutoSwitch">自动轮换</label>
+      </div>
+      <div class="dynamic-bg-control-buttons">
+        <button class="dynamic-bg-control-button secondary" id="dynamicBgPrevBtn">上一张</button>
+        <button class="dynamic-bg-control-button secondary" id="dynamicBgNextBtn">下一张</button>
+      </div>
+      <div class="dynamic-bg-control-buttons">
+        <button class="dynamic-bg-control-button primary" id="dynamicBgApplyBtn">应用设置</button>
+      </div>
+      <div class="dynamic-bg-control-status" id="dynamicBgStatus">
+        状态: 运行中
+      </div>
+    </div>
+  </div>
+  <!-- /.Dynamic Background Control Panel -->
 
   <!-- Content -->
   <div class="carousel-content text-center white-text wow fadeIn">
